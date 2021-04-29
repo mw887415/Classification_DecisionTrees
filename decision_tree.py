@@ -1,6 +1,5 @@
 from sklearn import tree
 
-clf_decision_tree = tree.DecisionTreeClassifier()
 
 # [height, weight, shoe_size]
 X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40],
@@ -10,8 +9,9 @@ X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40],
 Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female',
      'female', 'male', 'male']
 
-
-#and train them on our data
+# model: decision tree classifierfds
+clf_decision_tree = tree.DecisionTreeClassifier()
+#and train them on our data set
 clf_decision_tree = clf_decision_tree.fit(X, Y)
 
 prediction =   clf_decision_tree.predict([[190, 70, 43]])

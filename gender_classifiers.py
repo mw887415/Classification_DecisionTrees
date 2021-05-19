@@ -6,6 +6,7 @@ from sklearn import tree
 from sklearn.svm import SVC
 from sklearn.linear_model import Perceptron
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import numpy as np
 
@@ -21,12 +22,14 @@ clf_tree = tree.DecisionTreeClassifier()
 clf_svm = SVC()
 clf_perceptron = Perceptron()
 clf_KNN = KNeighborsClassifier()
+clf_logistic = LogisticRegression()
 
 # Training the models
 clf_tree.fit(X, Y)
 clf_svm.fit(X, Y)
 clf_perceptron.fit(X, Y)
 clf_KNN.fit(X, Y)
+clf_logistic.fit(X, Y)
 
 # Testing using the same data
 pred_tree = clf_tree.predict(X)
@@ -49,9 +52,14 @@ acc_KNN = accuracy_score(Y, pred_KNN) * 100
 #Result: 72,72...
 print('Accuracy for KNN: {}'.format(acc_KNN))
 
+pred_logistic = clf_logistic.predict(X)
+acc_logistic = accuracy_score(Y, pred_logistic) * 100
+print('Accuracy for logistic regression: {}'.format(acc_logistic))
+
+
 # The best classifier from svm, per, KNN
-# We left out the DecisionTreeClassifier since there is high likelihood of
-# overfitting, which in practice translates into a bad classifier
+# We left out the DecisionTreeClassifier and logistic regression since there is
+# a high likelihood of overfitting, which in practice translates into a bad classifier
 index = np.argmax([acc_svm, acc_per, acc_KNN]) # Returns the indices of the maximum values along an axis.
 classifiers = {0: 'SVM', 1: 'Perceptron', 2: 'KNN'}
 print('Best gender classifier is {}'.format(classifiers[index]))
